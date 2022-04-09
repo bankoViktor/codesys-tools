@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "TargetEditor": {
+      "commandName": "Project"
+    },
+    "Arg": {
+      "commandName": "Project",
+      "commandLineArgs": "\"E:\\PLC\\Projects\\test_2\\export_1\\PLC CONFIGURATION.EXP\""
+    }
+  }
+}
