@@ -14,7 +14,6 @@
         /// Индекс в родительском элементе.
         /// </summary>
         public int IndexInParent { get; set; } = -1;
-        // TODO тип IndexInParent
 
         /// <summary>
         /// Комментарий.
@@ -24,6 +23,6 @@
         /// <summary>
         /// Параметры.
         /// </summary>
-        public List<Parameter> Parameters { get; set; } = new();
+        public List<Parameter>? Parameters { get; set; }
     }
 }

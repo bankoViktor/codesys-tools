@@ -141,9 +141,9 @@
         Semicolon,
 
         /// <summary>
-        /// Одиночная кавычка.
+        /// Строка в одиночных кавычках.
         /// </summary>
-        SingleQuote,
+        String,
 
         /// <summary>
         /// Число.

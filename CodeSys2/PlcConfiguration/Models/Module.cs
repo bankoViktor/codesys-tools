@@ -1,4 +1,7 @@
-﻿namespace CodeSys2.PlcConfiguration.Models
+﻿using CodeSys2.PlcConfiguration.TypeConverters;
+using System.ComponentModel;
+
+namespace CodeSys2.PlcConfiguration.Models
 {
     /// <summary>
     /// Модуль конфигурации ПЛК.
@@ -35,12 +38,14 @@
         /// </summary>
         public IECAddress? AddressDiag { get; set; }
 
-        // TODO IsDownload аннотация
+        // TODO аннотация IsDownload
+        [TypeConverter(typeof(BooleanTypeConverter))]
         public bool IsDownload { get; set; } = false;
 
         /// <summary>
         /// Исключение модуля из авто вычисления IEC адреса.
         /// </summary>
+        [TypeConverter(typeof(BooleanTypeConverter))]
         public bool IsExcludeFromAutoAddress { get; set; } = false;
 
         /// <summary>

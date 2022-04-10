@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodeSys2.PLCConfiguration.Serialization\CodeSys2.csproj" />
+    <ProjectReference Include="..\CodeSys2\CodeSys2.csproj" />
   </ItemGroup>
 
 </Project>

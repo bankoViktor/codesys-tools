@@ -43,7 +43,7 @@ namespace CodeSys2.PlcConfiguration.Serialization
         public static DynamicLexemDefinition[] Dynamics = new[]
         {
             new DynamicLexemDefinition("(\\+|-)?\\d+", LexemKind.Number),
-            new DynamicLexemDefinition("'.*'", LexemKind.SingleQuote),
+            new DynamicLexemDefinition("'.*'", LexemKind.String),
             new DynamicLexemDefinition("%(I|Q|M)(X|B|W|D)\\d*(\\.\\d+)*", LexemKind.IECAddress),
         };
     }

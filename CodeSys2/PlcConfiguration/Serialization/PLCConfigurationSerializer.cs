@@ -17,16 +17,13 @@ namespace CodeSys2.PlcConfiguration
             // Лексический анализ
             var lexer = new Lexer(text);
 
-            // Синтаксический анализ
+            // Синтаксический анализ и заполнение объекта конфигурации
             var syntaxer = new Syntaxer(lexer.Lexems.ToArray());
+            var config = syntaxer.ParseConfiguration();
+            if (config is null)
+                throw new InvalidOperationException("Не удалось десериализовать конфигурацию ПЛК");
 
-            var root = syntaxer.Root;
-
-
-            var config = new PlcConfiguration();
-
-
-            throw new NotImplementedException();
+            return config;
         }
     }
 }

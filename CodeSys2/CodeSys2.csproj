@@ -14,4 +14,8 @@
     <None Include="PlcConfiguration\Serialization\Serializer2.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="PlcConfiguration\Serialization\EntityWriters\" />
+  </ItemGroup>
+
 </Project>
