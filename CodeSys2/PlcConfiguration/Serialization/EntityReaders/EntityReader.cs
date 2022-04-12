@@ -1,7 +1,15 @@
 ﻿namespace CodeSys2.PlcConfiguration.Serialization.EntityReaders
 {
-    internal class EntityReader
+    internal abstract class EntityReader
     {
-        public virtual object? Read() => throw new NotImplementedException();
+        protected readonly EntityReaderContext _context;
+
+
+        public EntityReader(EntityReaderContext context)
+        {
+            _context = context;
+        }
+
+        public abstract object? Read();
     }
 }

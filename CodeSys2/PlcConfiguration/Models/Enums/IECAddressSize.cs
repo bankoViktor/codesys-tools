@@ -8,7 +8,7 @@
         /// <summary>
         /// Бит.
         /// </summary>
-        Bit = 'X',
+        Bool = 'X',
 
         /// <summary>
         /// Байт (8 бит).

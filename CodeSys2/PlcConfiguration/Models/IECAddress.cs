@@ -14,7 +14,7 @@ namespace CodeSys2.PlcConfiguration.Models
     public class IECAddress : ICloneable
     {
         private IECAddressType _type = IECAddressType.Input;
-        private IECAddressSize _size = IECAddressSize.Bit;
+        private IECAddressSize _size = IECAddressSize.Bool;
 
         /// <summary>
         /// Тип IEC адреса.
@@ -176,14 +176,14 @@ namespace CodeSys2.PlcConfiguration.Models
 
             // Type
 
-            if (!EnumHelper.EnumValueInRange<IECAddressType>(addr[1]))
+            if (!EnumHelper.IsValid<IECAddressType>(addr[1]))
                 throw new NotSupportedException($"Литера \"{addr[1]}\" типа IEC адреса не поддерживается");
 
             Type = (IECAddressType)addr[1];
 
             // Size
 
-            if (!EnumHelper.EnumValueInRange<IECAddressSize>(addr[2]))
+            if (!EnumHelper.IsValid<IECAddressSize>(addr[2]))
                 throw new NotSupportedException($"Литера \"{addr[2]}\" размера IEC адреса не поддерживается");
 
             Size = (IECAddressSize)addr[2];

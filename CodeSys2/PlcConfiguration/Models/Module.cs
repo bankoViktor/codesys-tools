@@ -1,11 +1,11 @@
-﻿using CodeSys2.PlcConfiguration.TypeConverters;
-using System.ComponentModel;
+﻿using System.Diagnostics;
 
 namespace CodeSys2.PlcConfiguration.Models
 {
     /// <summary>
     /// Модуль конфигурации ПЛК.
     /// </summary>
+    [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
     public class Module : Entity
     {
         /// <summary>
@@ -38,19 +38,19 @@ namespace CodeSys2.PlcConfiguration.Models
         /// </summary>
         public IECAddress? AddressDiag { get; set; }
 
-        // TODO аннотация IsDownload
-        [TypeConverter(typeof(BooleanTypeConverter))]
+        // TODO аннотация Module.IsDownload
         public bool IsDownload { get; set; } = false;
 
         /// <summary>
         /// Исключение модуля из авто вычисления IEC адреса.
         /// </summary>
-        [TypeConverter(typeof(BooleanTypeConverter))]
         public bool IsExcludeFromAutoAddress { get; set; } = false;
 
         /// <summary>
         /// Дочерние модули и каналы.
         /// </summary>
-        public List<Entity>? Children { get; set; }
+        public List<Entity> Children { get; set; } = new();
+
+        private string GetDebuggerDisplay() => $"{{Module: '{ModuleName}' {AddressIn} '{Comment}'}}";
     }
 }

@@ -1,8 +1,11 @@
-﻿namespace CodeSys2.PlcConfiguration.Models
+﻿using System.Diagnostics;
+
+namespace CodeSys2.PlcConfiguration.Models
 {
     /// <summary>
     /// Битовый канал конфигурации ПЛК.
     /// </summary>
+    [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
     public class BitChannel
     {
         /// <summary>
@@ -24,5 +27,7 @@
         /// Комментарий.
         /// </summary>
         public string Comment { get; set; } = string.Empty;
+
+        private string GetDebuggerDisplay() => $"{{Bit {Index}: {Address} '{SymbolicName}' '{Comment}'}}";
     }
 }

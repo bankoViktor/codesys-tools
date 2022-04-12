@@ -1,6 +1,4 @@
 ﻿using CodeSys2.PlcConfiguration.Models;
-using CodeSys2.PlcConfiguration.TypeConverters;
-using System.ComponentModel;
 
 namespace CodeSys2.PlcConfiguration
 {
@@ -17,19 +15,16 @@ namespace CodeSys2.PlcConfiguration
         /// <summary>
         /// Автоматическое вычисление адреса.
         /// </summary>
-        [TypeConverter(typeof(BooleanTypeConverter))]
-        public bool AutoAdress { get; set; } = false;
+        public bool AutoAddress { get; set; } = false;
 
         /// <summary>
         /// Проверка пересечения адресов.
         /// </summary>
-        [TypeConverter(typeof(BooleanTypeConverter))]
         public bool CheckAddress { get; set; } = false;
 
         /// <summary>
         /// Сохранять конфигурацию в файл проекта.
         /// </summary>
-        [TypeConverter(typeof(BooleanTypeConverter))]
         public bool SaveConfigInProject { get; set; } = false;
 
         /// <summary>

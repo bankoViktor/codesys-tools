@@ -12,11 +12,11 @@ namespace CodeSys2.PlcConfiguration.Serialization
             new StaticLexemDefinition("PLC_CONFIGURATION", LexemKind.ConfigurationBegin, true),
             new StaticLexemDefinition("PLC_END", LexemKind.ConfigurationEnd, true),
             new StaticLexemDefinition("_GLOBAL", LexemKind.GlobalOptionsBegin, true),
-            new StaticLexemDefinition("_END_GLOBAL", LexemKind.GlobalOptionsEnd, true),
             new StaticLexemDefinition("_VERSION", LexemKind.Version, true),
             new StaticLexemDefinition("_AUTOADR", LexemKind.AutoAddress, true),
             new StaticLexemDefinition("_CHECKADR", LexemKind.CheckAddress, true),
             new StaticLexemDefinition("_SAVECONFIGFILESINPROJECT", LexemKind.SaveConfigFilesInProject, true),
+            new StaticLexemDefinition("_END_GLOBAL", LexemKind.GlobalOptionsEnd, true),
             new StaticLexemDefinition("_SECTION_NAME", LexemKind.SectionName, true),
             new StaticLexemDefinition("_INDEX_IN_PARENT", LexemKind.IndexInParent, true),
             new StaticLexemDefinition("_COMMENT", LexemKind.Comment, true),
@@ -43,7 +43,7 @@ namespace CodeSys2.PlcConfiguration.Serialization
         public static DynamicLexemDefinition[] Dynamics = new[]
         {
             new DynamicLexemDefinition("(\\+|-)?\\d+", LexemKind.Number),
-            new DynamicLexemDefinition("'.*'", LexemKind.String),
+            new DynamicLexemDefinition("'[^']*'", LexemKind.String),
             new DynamicLexemDefinition("%(I|Q|M)(X|B|W|D)\\d*(\\.\\d+)*", LexemKind.IECAddress),
         };
     }

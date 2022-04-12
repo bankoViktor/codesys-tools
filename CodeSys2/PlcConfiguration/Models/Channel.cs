@@ -1,10 +1,12 @@
 ﻿using CodeSys2.PlcConfiguration.Models.Enums;
+using System.Diagnostics;
 
 namespace CodeSys2.PlcConfiguration.Models
 {
     /// <summary>
     /// Канал конфигурации ПЛК.
     /// </summary>
+    [DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
     public class Channel : Entity
     {
         /// <summary>
@@ -21,5 +23,12 @@ namespace CodeSys2.PlcConfiguration.Models
         /// IEC адрес канала.
         /// </summary>
         public IECAddress? Address { get; set; }
+
+        /// <summary>
+        /// Битовые каналы.
+        /// </summary>
+        public List<BitChannel> BitChannels { get; set; } = new();
+
+        private string GetDebuggerDisplay() => $"{{Channel: {Address} '{SymbolicName}' '{Comment}'}}";
     }
 }

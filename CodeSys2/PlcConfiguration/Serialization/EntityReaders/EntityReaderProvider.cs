@@ -1,28 +1,28 @@
-﻿using CodeSys2.PlcConfiguration.Models;
+﻿using CodeSys2.PlcConfiguration.Serialization.Enums;
 
 namespace CodeSys2.PlcConfiguration.Serialization.EntityReaders
 {
     internal static class EntityReaderProvider
     {
-        private static readonly IDictionary<Type, Type> _entityReaders = new Dictionary<Type, Type>()
+        private static readonly IDictionary<LexemKind, Type> _entityReaders = new Dictionary<LexemKind, Type>()
         {
-            { typeof(PlcConfiguration), typeof(PlcConfigurationReader) },
-            { typeof(Module), typeof(ModuleReader) },
-            { typeof(Channel), typeof(ChannelReader) },
+            { LexemKind.ConfigurationBegin, typeof(PlcConfigurationReader) },
+            { LexemKind.ModuleBegin, typeof(ModuleReader) },
+            { LexemKind.ParametersBegin, typeof(ParametersReader) },
+            { LexemKind.Parameter, typeof(ParameterReader) },
+            { LexemKind.ChannelBegin, typeof(ChannelReader) },
+            { LexemKind.BitChannel, typeof(BitChannelReader) },
         };
 
-        public static EntityReader GetReader(Type entityType)
+        public static EntityReader GetReader(LexemKind lexemKind, EntityReaderContext context)
         {
-            if (entityType is null)
-                throw new ArgumentNullException(nameof(entityType));
+            if (!_entityReaders.ContainsKey(lexemKind))
+                throw new KeyNotFoundException($"Дочерний тип от {typeof(EntityReader).FullName} не задан для {lexemKind}");
 
-            if (!_entityReaders.ContainsKey(entityType))
-                throw new KeyNotFoundException($"Тип {typeof(EntityReader).FullName} не задан для типа {entityType.FullName}");
-
-            var entityReaderType = _entityReaders[entityType];
+            var entityReaderType = _entityReaders[lexemKind];
             if (entityReaderType is not null)
             {
-                var obj = Activator.CreateInstance(entityType);
+                var obj = Activator.CreateInstance(entityReaderType, context);
                 if (obj is not null)
                 {
                     return (EntityReader)obj;
