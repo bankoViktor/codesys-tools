@@ -57,16 +57,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="treeView1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <metadata name="TreeViewContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
   </metadata>
-  <metadata name="propertyGrid1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <metadata name="ImageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>427, 17</value>
   </metadata>
-  <metadata name="splitContainer1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
+  <data name="ImageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAEZTeXN0ZW0uV2luZG93cy5Gb3JtcywgQ3VsdHVyZT1uZXV0cmFs
+        LCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5BQEAAAAmU3lzdGVtLldpbmRvd3MuRm9ybXMu
+        SW1hZ2VMaXN0U3RyZWFtZXIBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAABgYAAAJNU0Z0AUkBTAIBAQIB
+        AAFoAQABaAEAARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMAARADAAEBAQABIAYAARAe
+        AANaAb0BnAGLAXgB/wGcAYsBeAH/AZwBiwF4Af8BnAGLAXgB/wGcAYsBeAH/AZwBiwF4Af8BnAGLAXgB
+        /wGcAYsBeAH/AZwBiwF4Af8BnAGLAXgB/wGcAYsBeAH/AZwBiwF4Af/IAANbAcABkQGCAYAB/gGcAYsB
+        eCn/AZwBiwF4Af8IAAMLAQ4DUQGcA2UB3QJqAWEB5hAAA2UB4wNlAd0DUQGdAwwBD4wAA1kBvAGoAZkB
+        iAH/AfUB9AHyAf8BnAGLAXgp/wGcAYsBeAH/CAADUgGhAY8BeQFmAf8BaQFkAWMB6QNJAYcQAANJAYUB
+        aQFkAWMB6QGPAXkBZgH/A1IBpIgAA1kBvAGoAZkBiAH/AfUB9AHyBf8BnAGLAXgp/wGcAYsBeAH/CAAB
+        cwFrAWYB8gGPAXkBZgH/Ax4BKxgAAx4BKgGPAXkBZgH/AmwBZAHriAABnAGLAXgB/wH2AfUB8wn/AZwB
+        iwF4Kf8BnAGLAXgB/wgAAY8BeQFmAf8BcQFuAVsB9SAAAXMBawFmAfIBcgFwAWUB8YgAAZwBiwF4Df8B
+        nAGLAXgp/wGcAYsBeAH/CAABjwF5AWYB/wF1AWgBZgH0IAABcgFwAWUB8QFzAWsBZgHyiAABnAGLAXgN
+        /wGcAYsBeCn/AZwBiwF4Af8EAAMMAQ8BjwF5AWYB/wNmAeAgAANhAd4BjwFuAVsB/QMMAQ+EAAGcAYsB
+        eA3/AZwBiwF4Kf8BnAGLAXgB/wQAA2QB2wGPAXkBZgH/A0sBjSAAA0sBjAGPAXkBZgH/A2EB3oQAAZwB
+        iwF4Df8BnAGLAXgp/wGcAYsBeAH/BAADXwHYAY8BeQFmAf8DUAGaIAADTgGYAY8BeQFmAf8DYQHZhAAB
+        nAGLAXgN/wGcAYsBeCn/AZwBiwF4Af8EAAMMAQ8BjwF5AWYB/wJpAWYB6CAAAmoBYQHmAY8BeQFmAf8D
+        DQERhAABnAGLAXgN/wGcAYsBeCn/AZwBiwF4Af8IAAGDAWoBaAH5AX0BeQFbAfogAAGBAW8BbAH3AX4B
+        eQFmAfyIAAGcAYsBeAn/AfEB7gHrAf8BnAGLAXgB/wGcAYsBeAH/AZwBiwF4Af8BnAGLAXgB/wGcAYsB
+        eAH/AZwBiwF4Af8BnAGLAXgB/wGcAYsBeAH/AZwBiwF4Af8BnAGLAXgB/wGcAYsBeAH/AZwBiwF4Af8I
+        AAGDAWoBaAH5AYMBYgFfAfsEARgABAEBgwFqAWgB+QF+AXkBZgH8iAABnAGLAXgF/wHjAd4B2QH/AaQB
+        lQGDAf8B0QHJAcAh/wH3AfUB9AH/AXkBdwFzAfQDTAGOCAABaAJlAecBjwF5AWYB/wMuAUgYAAMuAUcB
+        jwF5AWYB/wFpAWQBYwHpiAABnAGLAXgB/wHPAccBvgH/AacBmAGHAf8B6QHlAeEh/wH3AfUB9AH/AXkB
+        dwFzAfQDTAGODAADTAGOAY8BeQFmAf8BgQFvAWwB9wNOAZQQAANNAZMBgQFvAWwB9wGPAXkBZgH/A0wB
+        j4gAAZwBiwF4Af8BsAGiAZMB/wHzAfEB7yH/AfcB9QH0Af8BeQF3AXMB9ANMAY4QAAMHAQkDTAGPA2EB
+        1ANjAd8QAANlAd0DYQHUA0wBkAMIAQqIAAGcAYsBeAH/AZwBiwF4Af8BnAGLAXgB/wGcAYsBeAH/AZwB
+        iwF4Af8BnAGLAXgB/wGcAYsBeAH/AZwBiwF4Af8BnAGLAXgB/wGcAYsBeAH/AZwBiwF4Af8BnAGLAXgB
+        /wNLAY3MAAFCAU0BPgcAAT4DAAEoAwABQAMAARADAAEBAQABAQUAAYAXAAP/AQAB4AEAAv8EAAHAAQAC
+        wwQAAYABAALDBgABxwHjBgABzwHzBgABzwHzBgABjwHxBgABjwHxBgABjwHxBgABjwHxBgABzwHzBgAB
+        xwHjBgABxwHjBQABAQLDBQABAwLDBQABBwL/BAAL
+</value>
+  </data>
+  <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>218, 17</value>
   </metadata>
 </root>

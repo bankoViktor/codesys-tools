@@ -11,10 +11,16 @@ namespace ConfigEditor
         [STAThread]
         static void Main(string[] args)
         {
-            var dataContext = new DataContext()
+            DataContext dataContext;
+
+            if (args.Length == 1 && !string.IsNullOrWhiteSpace(args[0]))
             {
-                SourceFilename = args.Length > 0 && !string.IsNullOrWhiteSpace(args[0]) ? args[0] : null,
-            };
+                dataContext = new DataContext(args[0]);
+            }
+            else
+            {
+                dataContext = new DataContext();
+            }
 
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.

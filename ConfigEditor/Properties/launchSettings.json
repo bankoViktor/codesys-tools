@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "App with file": {
+      "commandName": "Project",
+      "commandLineArgs": "\"E:\\PLC\\Projects\\test_2\\PLC CONFIGURATION.EXP\""
+    },
+    "App": {
+      "commandName": "Project"
+    }
+  }
+}

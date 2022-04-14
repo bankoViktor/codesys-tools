@@ -16,12 +16,12 @@ namespace CodeSys2.PlcConfiguration.Models
         /// <summary>
         /// Название.
         /// </summary>
-        public string Name { get; set; } = string.Empty;
+        public string? Name { get; set; }
 
         /// <summary>
         /// Название модуля.
         /// </summary>
-        public string ModuleName { get; set; } = string.Empty;
+        public string? ModuleName { get; set; }
 
         /// <summary>
         /// Адрес в памяти входов.
@@ -39,17 +39,18 @@ namespace CodeSys2.PlcConfiguration.Models
         public IECAddress? AddressDiag { get; set; }
 
         // TODO аннотация Module.IsDownload
-        public bool IsDownload { get; set; } = false;
+        public bool IsDownload { get; set; }
 
         /// <summary>
         /// Исключение модуля из авто вычисления IEC адреса.
         /// </summary>
-        public bool IsExcludeFromAutoAddress { get; set; } = false;
+        public bool IsExcludeFromAutoAddress { get; set; }
 
         /// <summary>
         /// Дочерние модули и каналы.
         /// </summary>
         public List<Entity> Children { get; set; } = new();
+
 
         private string GetDebuggerDisplay() => $"{{Module: '{ModuleName}' {AddressIn} '{Comment}'}}";
     }
