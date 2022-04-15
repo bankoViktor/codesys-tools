@@ -25,14 +25,14 @@ namespace CodeSys2.PlcConfiguration.TypeConverters
                 else if (valueString == "1" || valueString == "true")
                     return true;
                 else
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException($"Значение '{value}' тип Boolean недопустимо");
             }
             else if (value is int valueInt)
             {
                 return valueInt > 0;
             }
             else
-                throw new NotSupportedException();
+                throw new NotSupportedException($"Тип '{value.GetType().FullName}' не поддерживается");
         }
     }
 }

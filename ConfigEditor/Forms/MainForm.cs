@@ -1,34 +1,64 @@
 using CodeSys2.PlcConfiguration.Models;
 using ConfigEditor.Data;
 using ConfigEditor.ViewModels;
-using System.Xml.Linq;
 
 namespace ConfigEditor.Forms
 {
     public partial class MainForm : Form
     {
-        private readonly DataContext _dataContext;
+        #region Properties
 
+        private readonly DataContext _context;
+
+        #endregion
+
+        #region Lifetime
 
         public MainForm(DataContext dataContext)
         {
             InitializeComponent();
 
-            _dataContext = dataContext;
+            _context = dataContext;
 
             Text = GetCaption();
         }
 
+        #endregion
+
+        #region Form Events
+
         private void MainForm_Load(object sender, EventArgs e)
         {
-            TreeView.Nodes.Clear();
+            EntityTreeView.Nodes.Clear();
 
-            if (_dataContext.Configuration.RootModule is not null)
+            if (_context.Configuration.RootModule is not null)
             {
-                var rootNode = CreateTreeNode(_dataContext.Configuration.RootModule);
-                TreeView.Nodes.Add(rootNode);
+                var rootNode = CreateTreeNode(_context.Configuration.RootModule);
+                EntityTreeView.Nodes.Add(rootNode);
             }
+
+            EntityTreeView.Nodes[0]?.Expand();
         }
+
+        #endregion
+
+        #region EntityTreeView Events
+
+        private void EntityTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            PropertyGrid.SelectedObject =
+                e.Node?.Tag is ModuleViewModel moduleViewModel ? moduleViewModel :
+                e.Node?.Tag is ChannelViewModel channelViewModel ? channelViewModel :
+                e.Node?.Tag is BitChannelViewModel bitChannelViewModel ? bitChannelViewModel :
+                null;
+
+            UpdateStateButton();
+        }
+
+        private void EntityTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) =>
+            EntityTreeView.SelectedNode = e.Node;
+
+        #endregion
 
         private TreeNode CreateTreeNode(object obj)
         {
@@ -40,10 +70,10 @@ namespace ConfigEditor.Forms
                 vm.Changed += ViewModel_Changed;
                 node.Tag = vm;
                 node.Text = vm.DisplayText;
+                node.ImageIndex = 0;
                 node.Nodes.AddRange(module.Children
                     .Select(child => CreateTreeNode(child))
                     .ToArray());
-                node.ImageIndex = 0;
             }
             else if (obj is Channel channel)
             {
@@ -52,6 +82,9 @@ namespace ConfigEditor.Forms
                 node.Tag = vm;
                 node.Text = vm.DisplayText;
                 node.ImageIndex = 1;
+                node.Nodes.AddRange(channel.BitChannels
+                   .Select(child => CreateTreeNode(child))
+                   .ToArray());
             }
             else if (obj is BitChannel bitChannel)
             {
@@ -70,60 +103,17 @@ namespace ConfigEditor.Forms
         }
 
         private string GetCaption() => string.Format("{0}{1} - {2}",
-            _dataContext.SourceFilename ?? "безыменный",
-            _dataContext.IsModified ? "*" : string.Empty,
-            Application.ProductName
-        );
-
-        private void TreeView_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (e.Node?.Tag is ModuleViewModel moduleViewModel)
-            {
-                PropertyGrid.SelectedObject = moduleViewModel;
-            }
-            else if (e.Node?.Tag is ChannelViewModel channelViewModel)
-            {
-                PropertyGrid.SelectedObject = channelViewModel;
-            }
-            else if (e.Node?.Tag is BitChannelViewModel bitChannelViewModel)
-            {
-                PropertyGrid.SelectedObject = bitChannelViewModel;
-            }
-            else
-            {
-                PropertyGrid.SelectedObject = null;
-            }
-
-            UpdateStateButton();
-        }
-
-        private void ViewModel_Changed(object? sender, ChangedEventArgs e)
-        {
-            if (sender is ModuleViewModel moduleViewModel)
-            {
-                TreeView.SelectedNode.Text = moduleViewModel.DisplayText;
-            }
-            else if (sender is ChannelViewModel channelViewModel)
-            {
-                TreeView.SelectedNode.Text = channelViewModel.DisplayText;
-            }
-            else if (sender is BitChannelViewModel bitChannelViewModel)
-            {
-                TreeView.SelectedNode.Text = bitChannelViewModel.DisplayText;
-            }
-            else
-            {
-                throw new Exception();
-            }
-        }
+            _context.SourceFilename ?? "безыменный",
+            _context.IsModified ? "*" : string.Empty,
+            Application.ProductName);
 
         private void UpdateStateButton()
         {
-            var isSelected = TreeView.SelectedNode is not null;
+            var isSelected = EntityTreeView.SelectedNode is not null;
 
             // File
 
-            FileSaveToolStripMenuItem.Enabled = _dataContext.IsModified;
+            FileSaveToolStripMenuItem.Enabled = _context.IsModified;
 
             // Edit
 
@@ -180,13 +170,13 @@ namespace ConfigEditor.Forms
 
         private void EditDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (TreeView.SelectedNode is not null)
+            if (EntityTreeView.SelectedNode is not null)
             {
                 if (MessageBox.Show("Удалить узел и все его дочерние элементы?",
                     Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                     == DialogResult.Yes)
                 {
-                    TreeView.SelectedNode.Remove();
+                    EntityTreeView.SelectedNode.Remove();
                 }
             }
         }
@@ -218,24 +208,34 @@ namespace ConfigEditor.Forms
 
         #endregion
 
+        #region StripMenuItem - Tools
+
+        private void ToolsSelectSymbolNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dlg = new SymbolForm(_context, EntityTreeView);
+            dlg.ShowDialog();
+        }
+
+        #endregion
+
         #region Context
 
         private void AddModuleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var node = CreateModule();
-            TreeView.SelectedNode.Nodes.Add(node);
-            TreeView.SelectedNode.Expand();
+            EntityTreeView.SelectedNode.Nodes.Add(node);
+            EntityTreeView.SelectedNode.Expand();
         }
 
         #endregion
 
-        #region StripMenuItem - Tools
-
-        private void ToolsSelectSymbolNameToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ViewModel_Changed(object? sender, ChangedEventArgs e)
         {
-
+            EntityTreeView.SelectedNode.Text =
+                sender is ModuleViewModel moduleViewModel ? moduleViewModel.DisplayText :
+                sender is ChannelViewModel channelViewModel ? channelViewModel.DisplayText :
+                sender is BitChannelViewModel bitChannelViewModel ? bitChannelViewModel.DisplayText :
+                throw new Exception();
         }
-
-        #endregion
     }
 }

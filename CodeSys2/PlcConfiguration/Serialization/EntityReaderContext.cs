@@ -1,5 +1,6 @@
 ﻿using CodeSys2.PlcConfiguration.Models;
 using CodeSys2.PlcConfiguration.Serialization.Enums;
+using CodeSys2.PlcConfiguration.Serialization.Helpers;
 using CodeSys2.PlcConfiguration.TypeConverters;
 using CodeSys2.Utils;
 using System.ComponentModel;
@@ -51,7 +52,7 @@ namespace CodeSys2.PlcConfiguration.Serialization
             var lexem = Match(expected);
 
             if (lexem is null)
-                throw new InvalidOperationException($"На позиции {Current.Offset + Current.Length} ожидается {expected[0]}");
+                throw new InvalidOperationException($"На позиции {Current.Offset + Current.Length} ожидается {LexemKindHelper.GetLexemText(expected[0])}");
 
             return lexem;
         }
@@ -80,11 +81,11 @@ namespace CodeSys2.PlcConfiguration.Serialization
                         else if (value.Length > 1)
                         {
                             if (!int.TryParse(value, out enumVal))
-                                throw new InvalidOperationException();
+                                throw new InvalidOperationException($"На позиции {lexem.Offset} недопустимое значение '{value}'");
                         }
                         else
                         {
-                            throw new InvalidOperationException();
+                            throw new InvalidOperationException($"На позиции {lexem.Offset} недопустимое значение '{value}'");
                         }
 
                         if (EnumHelper.IsValid<T>(enumVal))
@@ -92,7 +93,7 @@ namespace CodeSys2.PlcConfiguration.Serialization
                             return (T)(object)enumVal;
                         }
                     }
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException($"На позиции {lexem.Offset} недопустимое значение '{value}'");
                 }
                 else
                 {

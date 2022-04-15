@@ -112,7 +112,7 @@ namespace CodeSys2.PlcConfiguration.Serialization.EntityReaders
             {
                 var reader = EntityReaderProvider.GetReader(_context.Current.Kind, _context);
                 if (reader is null)
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException("Не удалось определить экземпляр ридера для чтения элемента из конфигурации ПЛК");
 
                 var obj = reader.Read();
                 if (obj is null)

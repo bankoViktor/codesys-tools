@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.TreeView = new System.Windows.Forms.TreeView();
+            this.EntityTreeView = new System.Windows.Forms.TreeView();
             this.TreeViewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddModuleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddChannelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,25 +83,25 @@
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // TreeView
+            // EntityTreeView
             // 
-            this.TreeView.AllowDrop = true;
-            this.TreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.EntityTreeView.AllowDrop = true;
+            this.EntityTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TreeView.ContextMenuStrip = this.TreeViewContextMenuStrip;
-            this.TreeView.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TreeView.FullRowSelect = true;
-            this.TreeView.HideSelection = false;
-            this.TreeView.ImageIndex = 0;
-            this.TreeView.ImageList = this.ImageList;
-            this.TreeView.Location = new System.Drawing.Point(12, 12);
-            this.TreeView.Name = "TreeView";
-            this.TreeView.SelectedImageIndex = 0;
-            this.TreeView.ShowRootLines = false;
-            this.TreeView.Size = new System.Drawing.Size(457, 519);
-            this.TreeView.TabIndex = 0;
-            this.TreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView_AfterSelect);
+            this.EntityTreeView.ContextMenuStrip = this.TreeViewContextMenuStrip;
+            this.EntityTreeView.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.EntityTreeView.FullRowSelect = true;
+            this.EntityTreeView.HideSelection = false;
+            this.EntityTreeView.ImageIndex = 0;
+            this.EntityTreeView.ImageList = this.ImageList;
+            this.EntityTreeView.Location = new System.Drawing.Point(12, 12);
+            this.EntityTreeView.Name = "EntityTreeView";
+            this.EntityTreeView.SelectedImageIndex = 0;
+            this.EntityTreeView.Size = new System.Drawing.Size(457, 519);
+            this.EntityTreeView.TabIndex = 0;
+            this.EntityTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.EntityTreeView_AfterSelect);
+            this.EntityTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.EntityTreeView_NodeMouseClick);
             // 
             // TreeViewContextMenuStrip
             // 
@@ -231,6 +231,7 @@
             this.PropertyGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.PropertyGrid.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PropertyGrid.Location = new System.Drawing.Point(3, 12);
             this.PropertyGrid.Name = "PropertyGrid";
             this.PropertyGrid.Size = new System.Drawing.Size(350, 519);
@@ -241,12 +242,12 @@
             this.SplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SplitContainer.Location = new System.Drawing.Point(0, 52);
+            this.SplitContainer.Location = new System.Drawing.Point(0, 39);
             this.SplitContainer.Name = "SplitContainer";
             // 
             // SplitContainer.Panel1
             // 
-            this.SplitContainer.Panel1.Controls.Add(this.TreeView);
+            this.SplitContainer.Panel1.Controls.Add(this.EntityTreeView);
             // 
             // SplitContainer.Panel2
             // 
@@ -485,7 +486,7 @@
 
         #endregion
 
-        private TreeView TreeView;
+        private TreeView EntityTreeView;
         private PropertyGrid PropertyGrid;
         private SplitContainer SplitContainer;
         private MenuStrip MenuStrip;

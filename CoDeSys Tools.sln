@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TargetEditor", "TargetEdito
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigEditor", "ConfigEditor\ConfigEditor.csproj", "{C9BDE51A-A1F7-435C-9D04-E7A8F871F1F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSys2", "CodeSys2\CodeSys2.csproj", "{270C3C74-D4C1-428E-8667-9444890E6AED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSys2", "CodeSys2\CodeSys2.csproj", "{270C3C74-D4C1-428E-8667-9444890E6AED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

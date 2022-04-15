@@ -1,5 +1,6 @@
 ﻿using CodeSys2.PlcConfiguration.Models;
 using CodeSys2.PlcConfiguration.Serialization.Enums;
+using CodeSys2.PlcConfiguration.Serialization.Helpers;
 
 namespace CodeSys2.PlcConfiguration.Serialization.EntityReaders
 {
@@ -24,7 +25,7 @@ namespace CodeSys2.PlcConfiguration.Serialization.EntityReaders
             // Reader
             var reader = EntityReaderProvider.GetReader(_context.Current.Kind, _context);
             if (reader is null)
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Не удалось определить экземпляр ридера для чтения элемента из конфигурации ПЛК");
 
             var rootEntity = reader.Read();
             if (rootEntity is null || rootEntity is not Module rootModule)
@@ -73,7 +74,7 @@ namespace CodeSys2.PlcConfiguration.Serialization.EntityReaders
                         break;
 
                     default:
-                        throw new InvalidOperationException($"На позиции {propertyLexem.Offset} недопустимое свойство {valueLexem.Kind}");
+                        throw new InvalidOperationException($"На позиции {propertyLexem.Offset} недопустимое свойство {LexemKindHelper.GetLexemText(valueLexem.Kind)}");
                 }
             }
 
