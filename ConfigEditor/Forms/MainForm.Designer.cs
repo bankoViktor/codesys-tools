@@ -100,8 +100,12 @@
             this.EntityTreeView.SelectedImageIndex = 0;
             this.EntityTreeView.Size = new System.Drawing.Size(457, 519);
             this.EntityTreeView.TabIndex = 0;
+            this.EntityTreeView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.EntityTreeView_ItemDrag);
             this.EntityTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.EntityTreeView_AfterSelect);
             this.EntityTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.EntityTreeView_NodeMouseClick);
+            this.EntityTreeView.DragDrop += new System.Windows.Forms.DragEventHandler(this.EntityTreeView_DragDrop);
+            this.EntityTreeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.EntityTreeView_DragEnter);
+            this.EntityTreeView.DragOver += new System.Windows.Forms.DragEventHandler(this.EntityTreeView_DragOver);
             // 
             // TreeViewContextMenuStrip
             // 
@@ -118,6 +122,7 @@
             this.ExpandToggleSegmentToolStripMenuItem});
             this.TreeViewContextMenuStrip.Name = "contextMenuStrip1";
             this.TreeViewContextMenuStrip.Size = new System.Drawing.Size(192, 192);
+            this.TreeViewContextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.TreeViewContextMenuStrip_Opening);
             // 
             // AddModuleToolStripMenuItem
             // 
@@ -344,6 +349,7 @@
             this.EditToolStripMenuItem.Name = "EditToolStripMenuItem";
             this.EditToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.EditToolStripMenuItem.Text = "Правка";
+            this.EditToolStripMenuItem.DropDownOpening += new System.EventHandler(this.EditToolStripMenuItem_DropDownOpening);
             // 
             // EditCutToolStripMenuItem
             // 

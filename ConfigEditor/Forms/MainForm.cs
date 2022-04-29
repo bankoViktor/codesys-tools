@@ -1,11 +1,16 @@
 using CodeSys2.PlcConfiguration.Models;
 using ConfigEditor.Data;
 using ConfigEditor.ViewModels;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace ConfigEditor.Forms
 {
     public partial class MainForm : Form
     {
+        private const string _clipboaedFormat = "app.entity";
+
+
         #region Properties
 
         private readonly DataContext _context;
@@ -20,7 +25,7 @@ namespace ConfigEditor.Forms
 
             _context = dataContext;
 
-            Text = GetCaption();
+            Text = Caption;
         }
 
         #endregion
@@ -102,7 +107,7 @@ namespace ConfigEditor.Forms
             return node;
         }
 
-        private string GetCaption() => string.Format("{0}{1} - {2}",
+        private string Caption => string.Format("{0}{1} - {2}",
             _context.SourceFilename ?? "безыменный",
             _context.IsModified ? "*" : string.Empty,
             Application.ProductName);
@@ -153,6 +158,13 @@ namespace ConfigEditor.Forms
 
         #region StripMenuItem - Edit
 
+        private void EditToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            var isSelected = EntityTreeView.SelectedNode is not null;
+            EditCopyToolStripMenuItem.Enabled = isSelected;
+            EditPasteToolStripMenuItem.Enabled = isSelected && Clipboard.ContainsData(_clipboaedFormat);
+        }
+
         private void EditCutToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -160,13 +172,26 @@ namespace ConfigEditor.Forms
 
         private void EditCopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var isSelected = EntityTreeView.SelectedNode is not null;
+            if (isSelected && EntityTreeView.SelectedNode?.Tag is not null)
+            {
+                Clipboard.SetData(_clipboaedFormat, EntityTreeView.SelectedNode.Tag);
+            }
         }
 
         private void EditPasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (IsSelected)
+            {
+                EntityTreeView.SelectedNode.Parent.Nodes.Insert(EntityTreeView.SelectedNode.Index,
+                    new TreeNode("x")
+                    {
+                        Tag = Clipboard.GetData(_clipboaedFormat) as Object,
+                    });
+            }
         }
+
+        public bool IsSelected => EntityTreeView.SelectedNode is not null;
 
         private void EditDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -210,6 +235,13 @@ namespace ConfigEditor.Forms
 
         #region StripMenuItem - Tools
 
+        private void TreeViewContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            var isSelected = EntityTreeView.SelectedNode is not null;
+            CopyToolStripMenuItem.Enabled = isSelected;
+            PasteToolStripMenuItem.Enabled = isSelected && Clipboard.ContainsData(_clipboaedFormat);
+        }
+
         private void ToolsSelectSymbolNameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var dlg = new SymbolForm(_context, EntityTreeView);
@@ -236,6 +268,36 @@ namespace ConfigEditor.Forms
                 sender is ChannelViewModel channelViewModel ? channelViewModel.DisplayText :
                 sender is BitChannelViewModel bitChannelViewModel ? bitChannelViewModel.DisplayText :
                 throw new Exception();
+        }
+
+        private void EntityTreeView_DragDrop(object sender, DragEventArgs e)
+        {
+            
+        }
+
+        private void EntityTreeView_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = e.AllowedEffect;
+        }
+
+        private void EntityTreeView_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            // Move the dragged node when the left mouse button is used.
+            if (e.Button == MouseButtons.Left)
+            {
+                DoDragDrop(e.Item, DragDropEffects.Move);
+            }
+
+            // Copy the dragged node when the right mouse button is used.
+            else if (e.Button == MouseButtons.Right)
+            {
+                DoDragDrop(e.Item, DragDropEffects.Copy);
+            }
+        }
+
+        private void EntityTreeView_DragOver(object sender, DragEventArgs e)
+        {
+            
         }
     }
 }

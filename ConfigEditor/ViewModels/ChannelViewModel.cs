@@ -48,6 +48,12 @@ namespace ConfigEditor.ViewModels
             set => ChangeProperty(nameof(Mode), value);
         }
 
+        ///// <summary>
+        ///// Битовые каналы.
+        ///// </summary>
+        //[Browsable(false)]
+        //public List<BitChannel> BitChannels => _model.BitChannels;
+
         //[Category("Общие")]
         //[DisplayName("Комментарий")]
         //[Description("")]
